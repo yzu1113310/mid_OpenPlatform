@@ -1,3 +1,4 @@
+# static.py 範例修改：
 import requests
 from bs4 import BeautifulSoup
 import csv
@@ -32,7 +33,7 @@ for static in statics:
 
     static_data.append([name or "無資料", author or "無資料", price or "無價格"])
 
-# 儲存 CSV，並且這裡保存到本地
+# 儲存 CSV，並且這裡保存到本地工作目錄
 with open("static.csv", "w", newline="", encoding="utf-8-sig") as f:
     writer = csv.writer(f)
     writer.writerow(["書名", "作者", "價格"])
