@@ -2,8 +2,8 @@ name: Run Spider Daily and Manually
 
 on:
   schedule:
-   - cron: '0 * * * *'  # 每小時的第 0 分鐘執行（也就是整點）
-  workflow_dispatch:  # 手動觸發按鈕
+   - cron: '16 16 * * *'  # UTC 時間 16:16 → 台灣時間 00:16
+  workflow_dispatch:  # 手動觸發
 
 jobs:
   run-spiders:
