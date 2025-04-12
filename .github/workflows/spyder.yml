@@ -1,0 +1,37 @@
+name: Run Spider Daily and Manually
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 每天 00:00 UTC，自動執行
+  workflow_dispatch:  # 手動觸發按鈕
+
+jobs:
+  run-spiders:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          pip install requests beautifulsoup4
+
+      - name: Run static crawler
+        run: python static.py
+
+      - name: Run API crawler
+        run: python api.py
+
+      - name: Commit result CSV files
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add *.csv
+          git commit -m "Auto update CSV via GitHub Actions" || echo "No changes"
+          git push
