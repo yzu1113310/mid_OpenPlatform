@@ -1,3 +1,4 @@
+# api.py 範例修改：
 import requests
 import csv
 import os
